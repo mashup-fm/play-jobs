@@ -14,7 +14,6 @@
 	<classpathentry kind="lib" path="/Users/felipera/development/jobs/lib/jaxb-impl-2.1.12.jar"/>
 	<classpathentry kind="lib" path="/Users/felipera/development/jobs/lib/junit-4.8.1.jar"/>
 	<classpathentry kind="lib" path="/Users/felipera/development/jobs/lib/ocpsoft-pretty-time-1.0.6.jar"/>
-	<classpathentry kind="lib" path="/Users/felipera/development/jobs/lib/play-jobs.jar"/>
 	<classpathentry kind="lib" path="/Users/felipera/development/jobs/lib/resteasy-jackson-provider-2.2-beta-1.jar"/>
 	<classpathentry kind="lib" path="/Users/felipera/development/jobs/lib/resteasy-jaxb-provider-2.2-beta-1.jar"/>
 	<classpathentry kind="lib" path="/Users/felipera/development/jobs/lib/slf4j-api-1.6.1.jar"/>

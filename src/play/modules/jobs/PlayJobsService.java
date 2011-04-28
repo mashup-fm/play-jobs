@@ -26,10 +26,10 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+// import javax.ws.rs.GET;
+// import javax.ws.rs.Path;
+// import javax.ws.rs.PathParam;
+// import javax.ws.rs.Produces;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -44,7 +44,7 @@ import play.modules.jobs.PlayJobs.JobEntry;
 /**
  * The Class JobsService.
  */
-@Path("/jobs")
+// @Path("/jobs")
 public class PlayJobsService {
 
 	/**
@@ -52,9 +52,9 @@ public class PlayJobsService {
 	 * 
 	 * @return the scheduled jobs
 	 */
-	@GET
-	@Path("/list")
-	@Produces("application/json")
+	// @GET
+	// @Path("/list")
+	// @Produces("application/json")
 	public PlayJobs getJobs() {
 		// Get Jobs Plugin
 		JobsPlugin plugin = Play.plugin(JobsPlugin.class);
@@ -94,10 +94,10 @@ public class PlayJobsService {
 	 * @param jobClass
 	 *            the job class
 	 */
-	@GET
-	@Path("/trigger/{jobClass}/${instances}")
-	@Produces("application/json")
-	public void triggerJob(@PathParam("jobClass") String jobClass, @PathParam("numberOfInstances") Integer instances) {
+	// @GET
+	// @Path("/trigger/{jobClass}/${instances}")
+	// @Produces("application/json")
+	public void triggerJob(String jobClass, Integer instances) {
 		// Jobs Plugin
 		Play.plugin(JobsPlugin.class);
 
