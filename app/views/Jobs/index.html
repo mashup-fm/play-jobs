@@ -1,0 +1,45 @@
+#{extends 'Jobs/main.html' /}
+#{set title:'Scheduled Jobs' /}
+
+#{if flash.success}
+	<div class="crudFlash flashSuccess">
+		${flash.success}
+	</div>
+#{/if}
+#{if flash.error || error}
+	<div class="crudFlash flashError">
+		${error ?: flash.error}
+	</div>
+#{/if}
+
+<table>
+	<thead>
+		<tr>
+			<th class="jobName">Job Name</th>
+			<th class="runOnStart">Run On Start?</th>
+			<th class="runOnCron">Run On Cron?</th>
+			<th class="runEvery">Run Every?</th>
+			<th class="executeNow"></th>
+		</tr>
+	</thead>
+	<tbody>
+		#{if jobs.scheduledJobs.size() > 0}
+		    #{list jobs.scheduledJobs, as:'job'}
+		    	#{if job != null}
+				    <tr class="job" draggable="true">
+			   			<td>${job.jobClass.simpleName}</td>
+			   			<td>${job.runOnApplicationStart}</td>
+			   			<td>${job.runOnCron}</td>
+			   			<td>${job.runEverySoOften}</td>
+			   			<td><a href="@{executeNow(job.jobClass.name)}">Trigger Job</a></td>
+			   		</tr>
+	   			#{/if}
+		    #{/list}
+		#{/if}
+	    #{else}
+	    <tr>
+	    	<td colspan="5">No jobs available.</td>
+	    </tr>
+	    #{/else}
+	</tbody>
+</table>

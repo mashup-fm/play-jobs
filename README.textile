@@ -1,0 +1,23 @@
+Play! Jobs
+Web Interface to manage and trigger jobs running on a Play! Framework application
+
+by Felipe Oliveira
+http://mashup.fm
+http://geeks.aretotally.in
+http://twitter.com/_felipera
+
+
+
+Live Demo
+http://playjobs.mashup.fm
+
+
+
+Install Locally
+- Install Module
+- Add module routes to the application that's installing the jobs module
+- Start your play application
+- In your browser, go to http://localhost:9000/@jobs
+
+You should see all the jobs defined on your application, basically your classes that extend play.jobs.Job.
+
