@@ -19,6 +19,7 @@
 package play.modules.jobs;
 
 import java.lang.annotation.Annotation;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -138,7 +139,7 @@ public class PlayJobs implements Iterable<JobEntry> {
 	/**
 	 * The Class JobEntry.
 	 */
-	public static class JobEntry {
+	public static class JobEntry implements Comparator<JobEntry> {
 
 		/** The job class. */
 		private Class jobClass;
@@ -166,6 +167,19 @@ public class PlayJobs implements Iterable<JobEntry> {
 		}
 
 		/**
+		 * Instantiates a new job entry.
+		 * 
+		 * @param jobClass
+		 *            the job class
+		 */
+		public JobEntry(Class jobClass) {
+			this.jobClass = jobClass;
+			this.runOnApplicationStart = this.annotationCheck(OnApplicationStart.class, jobClass);
+			this.runOnCron = this.annotationCheck(On.class, jobClass);
+			this.runEverySoOften = this.annotationCheck(Every.class, jobClass);
+		}
+
+		/**
 		 * Instantiates a new schedule job.
 		 * 
 		 * @param job
@@ -190,10 +204,23 @@ public class PlayJobs implements Iterable<JobEntry> {
 		 * @return the string
 		 */
 		private String annotationCheck(Class<? extends Annotation> clazz, Job job) {
-			if (job == null) {
+			return this.annotationCheck(clazz, job.getClass());
+		}
+
+		/**
+		 * Annotation check.
+		 * 
+		 * @param clazz
+		 *            the clazz
+		 * @param jobClass
+		 *            the jobClass
+		 * @return the string
+		 */
+		private String annotationCheck(Class<? extends Annotation> clazz, Class jobClass) {
+			if (jobClass == null) {
 				return "n/a";
 			}
-			if (job.getClass().isAnnotationPresent(clazz)) {
+			if (jobClass.isAnnotationPresent(clazz)) {
 				return "Yes";
 			} else {
 				return "-";
@@ -252,6 +279,23 @@ public class PlayJobs implements Iterable<JobEntry> {
 		 */
 		public String getLastRunWasError() {
 			return this.lastRunWasError;
+		}
+
+		/**
+		 * Compare.
+		 * 
+		 * @param arg0
+		 *            the arg0
+		 * @param arg1
+		 *            the arg1
+		 * @return the int
+		 */
+		@Override
+		public int compare(JobEntry arg0, JobEntry arg1) {
+			if ((arg0 != null) && (arg1 != null) && (arg0.getClass() != null) && (arg1.getClass() != null)) {
+				return arg0.getClass().getName().compareTo(arg1.getClass().getName());
+			}
+			return 0;
 		}
 
 	}

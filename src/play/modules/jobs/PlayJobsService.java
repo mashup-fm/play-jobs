@@ -18,16 +18,24 @@
  */
 package play.modules.jobs;
 
+import static play.modules.jobs.util.Exceptions.logError;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import org.apache.commons.lang.StringUtils;
+
 import play.Logger;
 import play.Play;
+import play.classloading.ApplicationClasses.ApplicationClass;
 import play.exceptions.UnexpectedException;
 import play.jobs.Job;
 import play.jobs.JobsPlugin;
@@ -47,7 +55,7 @@ public class PlayJobsService {
 	@GET
 	@Path("/list")
 	@Produces("application/json")
-	public PlayJobs getScheduledJobs() {
+	public PlayJobs getJobs() {
 		// Get Jobs Plugin
 		JobsPlugin plugin = Play.plugin(JobsPlugin.class);
 		if (plugin == null) {
@@ -61,13 +69,14 @@ public class PlayJobsService {
 		int queueSize = plugin.executor.getPoolSize();
 
 		// Get Scheduled Jobs
-		List<Job> scheduledJobs = plugin.scheduledJobs;
-
-		// Wrap Pojos
 		List<JobEntry> jobEntries = new ArrayList<JobEntry>();
-		if (scheduledJobs != null) {
-			for (Job j : scheduledJobs) {
-				jobEntries.add(new JobEntry(j));
+		List<ApplicationClass> classes = Play.classes.all();
+		if (classes != null) {
+			// Wrap Pojos
+			for (Class clazz : Play.classloader.getAllClasses()) {
+				if ((clazz != null) && Job.class.isAssignableFrom(clazz)) {
+					jobEntries.add(new JobEntry(clazz));
+				}
 			}
 		}
 
@@ -86,27 +95,67 @@ public class PlayJobsService {
 	 *            the job class
 	 */
 	@GET
-	@Path("/trigger/{jobClass}")
+	@Path("/trigger/{jobClass}/${instances}")
 	@Produces("application/json")
-	public void triggerJob(@PathParam("jobClass") String jobClass) {
-		// Get Plugin
-		JobsPlugin plugin = Play.plugin(JobsPlugin.class);
+	public void triggerJob(@PathParam("jobClass") String jobClass, @PathParam("numberOfInstances") Integer instances) {
+		// Jobs Plugin
+		Play.plugin(JobsPlugin.class);
 
-		// Look for Job
-		List<Job> scheduledJobs = plugin.scheduledJobs;
-		for (Job job : scheduledJobs) {
-			// Check Class Match
-			if ((job != null) && job.getClass().getName().equals(jobClass)) {
-				// Log Debug
-				Logger.info("Firing Job: %s", job);
-
-				// Fire Job
-				job.now();
-			}
+		// Check Job Class
+		if (StringUtils.isBlank(jobClass)) {
+			throw new RuntimeException("Invalid Job Class!");
 		}
 
-		// Job wasn't found
-		throw new UnexpectedException(String.format("Couldn't find job %s on current list of scheduled jobs %s", jobClass, scheduledJobs));
-	}
+		// Check Number of Instances
+		if (instances == null) {
+			instances = 1;
+		}
+		if (instances < 1) {
+			instances = 1;
+		}
 
+		// Log Debug
+		Logger.info("Trigger Job - Class: %s, Number of Instances: %s", jobClass, instances);
+
+		// Trigger Job(s)
+		try {
+			// Define Class
+			Class clazz = Class.forName(jobClass);
+			if (clazz == null) {
+				throw new RuntimeException("Invalid Job Class: " + jobClass);
+			}
+
+			// Define Executor Service
+			ExecutorService executor = Executors.newFixedThreadPool(instances);
+
+			// Loop on number of instances needed
+			int count = 0;
+			for (int i = 0; i < instances; i++) {
+				// Add Count (I don't like to mix with "i" to avoid causing bugs
+				// when code gets refactored or something that I can't predict)
+				count = count + 1;
+
+				// Create Instance
+				Object o = clazz.newInstance();
+
+				// Check Instance Type
+				if ((o instanceof Job) == false) {
+					throw new RuntimeException("Invalid Class Instance: " + o);
+				}
+
+				// Log Debug
+				Logger.info("Triggering Job: %s", o);
+
+				// Fire Job
+				Job job = (Job) o;
+				executor.submit((Callable) job);
+				Logger.info("%s) Triggered Job: %s", count, job);
+			}
+
+		} catch (Throwable t) {
+			// Job wasn't found
+			logError(t);
+			throw new UnexpectedException(String.format("Couldn't trigger job: %s", jobClass));
+		}
+	}
 }

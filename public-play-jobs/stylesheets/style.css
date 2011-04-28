@@ -218,14 +218,13 @@ td a, td input[type=submit]
     font-family: "Qlassik Bold";
     font-weight: bold;
     xtext-shadow: none;
-    padding: 0 3px 0 5px;
+    padding: 50 3px 50 5px;
     color: #3E6300;
     -webkit-border-radius: 10px;
     -webkit-box-shadow: rgba(0,0,0,0.5) 0 1px 1px;
     -moz-border-radius: 10px;
     -moz-box-shadow: rgba(0,0,0,0.5) 0 1px 1px;
     cursor: pointer;
-    width: 16px;
     height: 16px;
 }
 
@@ -236,6 +235,21 @@ td a:active, td input[type=submit]:active
 }
 
 td input
+{
+    font-family: "Qlassik Bold";
+	text-align: left;
+	font-size: 15px;
+	padding: 20;
+	border: none;
+	border-bottom: 1px solid rgba(255, 255, 0, .3);
+	background: transparent;
+	color: gold;
+	display: block;
+	margin: -3px -1px;
+	width: 200px;
+}
+
+td select
 {
     font-family: "Qlassik Bold";
 	text-align: left;
@@ -441,4 +455,5 @@ footer a:hover
 {
    -khtml-user-drag: element;
 }
+
  

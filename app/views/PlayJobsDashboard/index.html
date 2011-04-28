@@ -31,7 +31,23 @@
 			   			<td>${job.runOnApplicationStart}</td>
 			   			<td>${job.runOnCron}</td>
 			   			<td>${job.runEverySoOften}</td>
-			   			<td><a href="@{executeNow(job.jobClass.name)}">Trigger Job</a></td>
+			   			<td>
+			   			<form action="@{executeNow()}" method="POST">
+			   			<input type="hidden" name="jobClass" value="${job.jobClass.name}">
+			   			<select name="instances">
+			   				<option value="1">1
+			   				<option value="5">5
+			   				<option value="10">10
+			   				<option value="25">25
+			   				<option value="50">50
+			   				<option value="100">100
+			   				<option value="250">250
+			   				<option value="500">500
+			   				<option value="1000">1000
+			   			</select><br>
+			   			<input type="submit" value="trigger x no. of concurrent jobs" class="triggerButton">
+			   			</form>
+			   			</td>
 			   		</tr>
 	   			#{/if}
 		    #{/list}

@@ -11,7 +11,7 @@ public class PlayJobsPlugin extends PlayPlugin {
 	@Override
 	public void onApplicationStart() {
 		Router.addRoute("GET", "/@jobs", "PlayJobsDashboard.index");
-		Router.addRoute("GET", "/@jobs/executeNow", "PlayJobsDashboard.executeNow");
+		Router.addRoute("*", "/@jobs/executeNow", "PlayJobsDashboard.executeNow");
 	}
 
 }

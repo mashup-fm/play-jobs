@@ -18,6 +18,7 @@
  */
 package controllers;
 
+import play.Logger;
 import play.modules.jobs.PlayJobs;
 import play.modules.jobs.PlayJobsService;
 import play.mvc.Controller;
@@ -32,7 +33,7 @@ public class PlayJobsDashboard extends Controller {
 	 */
 	public static void index() {
 		PlayJobsService service = new PlayJobsService();
-		PlayJobs jobs = service.getScheduledJobs();
+		PlayJobs jobs = service.getJobs();
 		render(jobs);
 	}
 
@@ -41,9 +42,10 @@ public class PlayJobsDashboard extends Controller {
 	 * 
 	 * @para m jobClass the job class
 	 */
-	public static void executeNow(String jobClass) {
+	public static void executeNow(String jobClass, Integer instances) {
+		Logger.info(String.format("Job Class: %s, Number of Concurrent Instances: %s", jobClass, instances));
 		PlayJobsService service = new PlayJobsService();
-		service.triggerJob(jobClass);
+		service.triggerJob(jobClass, instances);
 		flash.success("Triggered Job: %s", jobClass);
 		index();
 	}
