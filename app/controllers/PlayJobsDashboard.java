@@ -18,21 +18,21 @@
  */
 package controllers;
 
-import play.modules.jobs.JobsService;
-import play.modules.jobs.ScheduledJobs;
+import play.modules.jobs.PlayJobs;
+import play.modules.jobs.PlayJobsService;
 import play.mvc.Controller;
 
 /**
  * The Class Jobs.
  */
-public class Jobs extends Controller {
+public class PlayJobsDashboard extends Controller {
 
 	/**
 	 * Index.
 	 */
 	public static void index() {
-		JobsService service = new JobsService();
-		ScheduledJobs jobs = service.getScheduledJobs();
+		PlayJobsService service = new PlayJobsService();
+		PlayJobs jobs = service.getScheduledJobs();
 		render(jobs);
 	}
 
@@ -42,7 +42,7 @@ public class Jobs extends Controller {
 	 * @para m jobClass the job class
 	 */
 	public static void executeNow(String jobClass) {
-		JobsService service = new JobsService();
+		PlayJobsService service = new PlayJobsService();
 		service.triggerJob(jobClass);
 		flash.success("Triggered Job: %s", jobClass);
 		index();

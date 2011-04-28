@@ -31,14 +31,13 @@ import play.Play;
 import play.exceptions.UnexpectedException;
 import play.jobs.Job;
 import play.jobs.JobsPlugin;
-import play.modules.jobs.ScheduledJobs.JobEntry;
-import controllers.Jobs;
+import play.modules.jobs.PlayJobs.JobEntry;
 
 /**
  * The Class JobsService.
  */
 @Path("/jobs")
-public class JobsService {
+public class PlayJobsService {
 
 	/**
 	 * Gets the scheduled jobs.
@@ -48,7 +47,7 @@ public class JobsService {
 	@GET
 	@Path("/list")
 	@Produces("application/json")
-	public ScheduledJobs getScheduledJobs() {
+	public PlayJobs getScheduledJobs() {
 		// Get Jobs Plugin
 		JobsPlugin plugin = Play.plugin(JobsPlugin.class);
 		if (plugin == null) {
@@ -73,7 +72,7 @@ public class JobsService {
 		}
 
 		// Create Data Container
-		ScheduledJobs jobs = new ScheduledJobs(poolSize, activeCount, scheduledTaskCount, queueSize, jobEntries);
+		PlayJobs jobs = new PlayJobs(poolSize, activeCount, scheduledTaskCount, queueSize, jobEntries);
 		Logger.info("Scheduled Jobs: %s", jobs);
 
 		// Return Schedule Jobs
@@ -103,9 +102,6 @@ public class JobsService {
 
 				// Fire Job
 				job.now();
-
-				// Back to the List
-				Jobs.index();
 			}
 		}
 

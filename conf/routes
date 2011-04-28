@@ -1,15 +1,10 @@
-# Routes
-# This file defines all application routes (Higher priority routes first)
+# This file defines all module routes (Higher priority routes first)
+#
+# import these routes in the main app as :
+# *     /                       module:jobs
+#
 # ~~~~
 
-# RESTEasy Routes
-*      /              module:resteasy
+GET     /?                      PlayJobsDashboard.index
 
-# Home page
-GET     /                                       Application.index
-
-# Map static resources from the /app/public folder to the /public path
-GET     /public/                                staticDir:public
-
-# Catch all
-*       /{controller}/{action}                  {controller}.{action}
+GET     /play-jobs            	staticDir:public-play-jobs

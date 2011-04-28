@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<title>Play! Jobs  ★ #{get 'title' /}</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="/play-jobs/stylesheets/style.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="play-jobs/stylesheets/south-street/jquery-ui-1.7.2.custom.css" />
+    	<script src="/play-jobs/javascripts/jquery-1.4.min.js" type="text/javascript" charset="utf-8"></script>
+    	<script src="/play-jobs/javascripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>
+    	<script src="/play-jobs/javascripts/jquery.editinplace.packed.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+	<body>
+	    <div id="playjobs">
+    		<header>
+    			<img src="/play-jobs/images/logo.png" alt="logo" id="logo" />
+    			<h1>Play! Jobs</h1>
+    		</header>
+    		<nav>
+    			<a id="home" href="@{index()}" class="${request.action =~ /index/ ? 'selected' : ''}">Home</a>
+ 				<!--  
+    			<a id="docs" href="http://www.playframework.org/documentation/1.2/jobs" target="_blank">Docs</a>
+    			-->
+    		</nav>
+    		<section>
+    		    #{doLayout /}
+    		</section>
+    		<footer>
+    			<a href="http://geeks.aretotally.in">felipe oliveira</a> ★ 
+    			<a href="http://www.playframework.org/">playframework</a> 
+    		</footer>
+		</div>
+	</body>
+</html>

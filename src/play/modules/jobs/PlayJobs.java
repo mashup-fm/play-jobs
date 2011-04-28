@@ -26,12 +26,12 @@ import play.jobs.Every;
 import play.jobs.Job;
 import play.jobs.On;
 import play.jobs.OnApplicationStart;
-import play.modules.jobs.ScheduledJobs.JobEntry;
+import play.modules.jobs.PlayJobs.JobEntry;
 
 /**
  * The Class ScheduledJobs.
  */
-public class ScheduledJobs implements Iterable<JobEntry> {
+public class PlayJobs implements Iterable<JobEntry> {
 
 	/** The pool size. */
 	private int poolSize;
@@ -64,7 +64,7 @@ public class ScheduledJobs implements Iterable<JobEntry> {
 	 * @param queue
 	 *            the queue
 	 */
-	public ScheduledJobs(int poolSize, int activeCount, long taskCount, int queueSize, List<JobEntry> scheduleJobs) {
+	public PlayJobs(int poolSize, int activeCount, long taskCount, int queueSize, List<JobEntry> scheduleJobs) {
 		super();
 		this.poolSize = poolSize;
 		this.activeCount = activeCount;
@@ -76,7 +76,7 @@ public class ScheduledJobs implements Iterable<JobEntry> {
 	/**
 	 * Instantiates a new scheduled jobs.
 	 */
-	public ScheduledJobs() {
+	public PlayJobs() {
 
 	}
 
