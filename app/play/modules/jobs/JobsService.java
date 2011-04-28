@@ -21,6 +21,11 @@ package play.modules.jobs;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+
 import play.Logger;
 import play.Play;
 import play.exceptions.UnexpectedException;
@@ -32,6 +37,7 @@ import controllers.Jobs;
 /**
  * The Class JobsService.
  */
+@Path("/jobs")
 public class JobsService {
 
 	/**
@@ -39,6 +45,9 @@ public class JobsService {
 	 * 
 	 * @return the scheduled jobs
 	 */
+	@GET
+	@Path("/list")
+	@Produces("application/json")
 	public ScheduledJobs getScheduledJobs() {
 		// Get Jobs Plugin
 		JobsPlugin plugin = Play.plugin(JobsPlugin.class);
@@ -77,7 +86,10 @@ public class JobsService {
 	 * @param jobClass
 	 *            the job class
 	 */
-	public void triggerJob(String jobClass) {
+	@GET
+	@Path("/trigger/{jobClass}")
+	@Produces("application/json")
+	public void triggerJob(@PathParam("jobClass") String jobClass) {
 		// Get Plugin
 		JobsPlugin plugin = Play.plugin(JobsPlugin.class);
 

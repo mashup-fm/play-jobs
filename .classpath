@@ -2,17 +2,29 @@
 <classpath>
 	<classpathentry excluding="views/**" kind="src" path="app"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="src" path="rabbitmq-0.0.1"/>
+	<classpathentry kind="src" path="resteasy-1.3.1"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/framework/play.jar" sourcepath="/Users/felipera/Downloads/play-1.1.1/framework" />
+	<classpathentry kind="lib" path="/Users/felipera/development/play-jobs/lib/jackson-core-asl-1.6.3.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/development/play-jobs/lib/jackson-jaxrs-1.6.3.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/development/play-jobs/lib/jackson-mapper-asl-1.6.3.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/development/play-jobs/lib/jackson-xc-1.6.3.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/development/play-jobs/lib/jaxb-api-2.1.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/development/play-jobs/lib/jaxb-impl-2.1.12.jar"/>
 	<classpathentry kind="lib" path="/Users/felipera/development/play-jobs/lib/ocpsoft-pretty-time-1.0.6.jar"/>
-	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/google-gson-stream-1.6.jar"/>
-	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/jackson-core-lgpl-1.7.5.jar"/>
-	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/jackson-mapper-lgpl-1.7.5.jar"/>
-	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/json-rpc-1.0.jar"/>
-	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/org.restlet.jar"/>
-	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/play-rabbitmq.jar"/>
-	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/rabbitmq-client.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/development/play-jobs/lib/resteasy-jackson-provider-2.2-beta-1.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/development/play-jobs/lib/resteasy-jaxb-provider-2.2-beta-1.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/resteasy-1.3.1/lib/el-api.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/resteasy-1.3.1/lib/jaxrs-api-2.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/resteasy-1.3.1/lib/jboss-el.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/resteasy-1.3.1/lib/jettison.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/resteasy-1.3.1/lib/play-resteasy-play-module.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/resteasy-1.3.1/lib/resteasy-jackson-provider-2.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/resteasy-1.3.1/lib/resteasy-jaxb-provider-2.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/resteasy-1.3.1/lib/resteasy-jaxrs-2.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/resteasy-1.3.1/lib/resteasy-jettison-provider-2.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/resteasy-1.3.1/lib/resteasy-links-2.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/resteasy-1.3.1/lib/xercesImpl-2.9.1.jar"/>
 	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/framework/lib/activation-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/framework/lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/framework/lib/async-http-client-1.4.0.jar"/>
