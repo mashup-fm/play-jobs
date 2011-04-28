@@ -15,5 +15,7 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.playframework.playclipse.playNature</nature>
 	</natures>
-	
+	<linkedResources><link><name>rabbitmq-0.0.1</name><type>2</type><location>/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/app</location></link>
+<link><name>conf/rabbitmq-0.0.1</name><type>2</type><location>/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/conf</location></link>
+</linkedResources>
 </projectDescription>

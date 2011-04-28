@@ -18,16 +18,8 @@
  */
 package controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import play.Logger;
-import play.Play;
-import play.exceptions.UnexpectedException;
-import play.jobs.Job;
-import play.jobs.JobsPlugin;
+import play.modules.jobs.JobsService;
 import play.modules.jobs.ScheduledJobs;
-import play.modules.jobs.ScheduledJobs.JobEntry;
 import play.mvc.Controller;
 
 /**
@@ -39,67 +31,20 @@ public class Jobs extends Controller {
 	 * Index.
 	 */
 	public static void index() {
-		// Get Jobs Plugin
-		JobsPlugin plugin = Play.plugin(JobsPlugin.class);
-		if (plugin == null) {
-			throw new UnexpectedException("Cannot load jobs plugin!");
-		}
-
-		// Get Metrics
-		int poolSize = plugin.executor.getPoolSize();
-		int activeCount = plugin.executor.getActiveCount();
-		long scheduledTaskCount = plugin.executor.getTaskCount();
-		int queueSize = plugin.executor.getPoolSize();
-
-		// Get Scheduled Jobs
-		List<Job> scheduledJobs = plugin.scheduledJobs;
-
-		// Wrap Pojos
-		List<JobEntry> jobEntries = new ArrayList<JobEntry>();
-		if (scheduledJobs != null) {
-			for (Job j : scheduledJobs) {
-				jobEntries.add(new JobEntry(j));
-			}
-		}
-
-		// Create Data Container
-		ScheduledJobs jobs = new ScheduledJobs(poolSize, activeCount, scheduledTaskCount, queueSize, jobEntries);
-		Logger.info("Scheduled Jobs: %s", jobs);
-
-		// Render Template
+		JobsService service = new JobsService();
+		ScheduledJobs jobs = service.getScheduledJobs();
 		render(jobs);
 	}
 
 	/**
 	 * Trigger.
 	 * 
-	 * @param jobClass
-	 *            the job class
+	 * @para m jobClass the job class
 	 */
 	public static void executeNow(String jobClass) {
-		// Get Plugin
-		JobsPlugin plugin = Play.plugin(JobsPlugin.class);
-
-		// Look for Job
-		List<Job> scheduledJobs = plugin.scheduledJobs;
-		for (Job job : scheduledJobs) {
-			// Check Class Match
-			if ((job != null) && job.getClass().getName().equals(jobClass)) {
-				// Log Debug
-				Logger.info("Firing Job: %s", job);
-
-				// Fire Job
-				job.now();
-
-				// Flash Success Message
-				flash.success("Triggered Job: %s", jobClass);
-
-				// Back to the List
-				Jobs.index();
-			}
-		}
-
-		// Job wasn't found
-		throw new UnexpectedException(String.format("Couldn't find job %s on current list of scheduled jobs %s", jobClass, scheduledJobs));
+		JobsService service = new JobsService();
+		service.triggerJob(jobClass);
+		flash.success("Triggered Job: %s", jobClass);
+		index();
 	}
 }

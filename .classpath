@@ -2,10 +2,17 @@
 <classpath>
 	<classpathentry excluding="views/**" kind="src" path="app"/>
 	<classpathentry kind="src" path="test"/>
-	
+	<classpathentry kind="src" path="rabbitmq-0.0.1"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/framework/play.jar" sourcepath="/Users/felipera/Downloads/play-1.1.1/framework" />
 	<classpathentry kind="lib" path="/Users/felipera/development/play-jobs/lib/ocpsoft-pretty-time-1.0.6.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/google-gson-stream-1.6.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/jackson-core-lgpl-1.7.5.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/jackson-mapper-lgpl-1.7.5.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/json-rpc-1.0.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/org.restlet.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/play-rabbitmq.jar"/>
+	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/modules/rabbitmq-0.0.1/lib/rabbitmq-client.jar"/>
 	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/framework/lib/activation-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/framework/lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="/Users/felipera/Downloads/play-1.1.1/framework/lib/async-http-client-1.4.0.jar"/>
