@@ -8,13 +8,9 @@ require:
     - org.jboss.resteasy -> resteasy-jackson-provider 2.1.0.GA
     
 repositories:
-    - Atlassian:
-        type: iBiblio
-        root: "https://maven.atlassian.com/content/repositories/jboss-releases/"
-        contains: 
-            - org.jboss.resteasy -> *
     - JBoss:
         type: iBiblio
-        root: "http://repository.jboss.org/maven2/"
+        root: "https://repository.jboss.org/nexus/content/groups/public-jboss/"
         contains: 
+            - org.jboss.resteasy -> *
             - org.scannotation -> scannotation 1.0.2
