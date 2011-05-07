@@ -1,0 +1,30 @@
+Play! Jobs
+Web Interface to manage and trigger jobs running on a Play! Framework application. A  JAX-RS/RESTFul JSON API is available through Play!'s RESTEasy Module.
+ 
+by Felipe Oliveira
+http://mashup.fm
+http://geeks.aretotally.in
+http://twitter.com/_felipera
+
+
+Live Demo
+http://playjobs.mashup.fm
+
+
+Install Locally
+- Install Module
+- Add module routes to the application that's installing the jobs module
+- Start your play application
+- In your browser, go to http://localhost:9000/@jobs
+
+You should see all the jobs defined on your application, basically your classes that extend play.jobs.Job.
+
+
+RESTful API
+Using Play!'s RESTEasy's module. All the business logic is encapsulated on service class JobsService which contains 
+the annotations necessary to expose the service and bind it as a JSON interface. 
+This JSON interface is useful if you need to hook your Play! application into a monitoring solution like Nagios.
+
+
+
+
