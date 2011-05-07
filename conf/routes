@@ -7,4 +7,4 @@
 
 GET     /?                      PlayJobsDashboard.index
 
-GET     /play-jobs            	staticDir:public-play-jobs
+GET     /play-jobs/            	staticDir:public-play-jobs

@@ -2,6 +2,9 @@
 
 <project name="jobs" default="build" basedir=".">
     
+	<property environment="env" />
+	<property name="play.path" value="${env.PLAY_HOME}" />
+
     <target name="check" unless="play.path">
         <fail message="Please specify Play framework path using -Dplay.path=/path/to/framework/home" />
     </target>
@@ -41,7 +44,7 @@
 
     <target name="compile" depends="check">
         <mkdir dir="tmp/classes" />
-        <javac srcdir="src" destdir="tmp/classes" target="1.5" debug="true">
+        <javac srcdir="src" destdir="tmp/classes" target="1.5" debug="true" includeantruntime="false">
             <classpath refid="project.classpath" />
         </javac>
     </target>
