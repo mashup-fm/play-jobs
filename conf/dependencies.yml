@@ -1,9 +1,16 @@
-self: play -> jobs 0.1
+self: play -> jobs 0.2
 
 require:
     - play
     - play -> resteasy 1.3.1
-    - org.jboss.resteasy -> resteasy-jaxrs 2.0.GA
-    - org.jboss.resteasy -> resteasy-jaxb-provider 2.0.GA
-    - org.jboss.resteasy -> resteasy-jackson-provider 2.0.GA
+    - org.jboss.resteasy -> resteasy-jaxrs 2.1.0.GA
+    - org.jboss.resteasy -> resteasy-jaxb-provider 2.1.0.GA
+    - org.jboss.resteasy -> resteasy-jackson-provider 2.1.0.GA
     
+repositories:
+    - JBoss:
+        type: iBiblio
+        root: "https://repository.jboss.org/nexus/content/groups/public-jboss/"
+        contains: 
+            - org.jboss.resteasy -> *
+            - org.scannotation -> scannotation 1.0.2
