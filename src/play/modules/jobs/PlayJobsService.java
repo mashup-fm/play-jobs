@@ -120,7 +120,7 @@ public class PlayJobsService {
 		// Trigger Job(s)
 		try {
 			// Define Class
-			Class clazz = Class.forName(jobClass);
+			Class clazz = Play.classloader.getClassIgnoreCase(jobClass);
 			if (clazz == null) {
 				throw new RuntimeException("Invalid Job Class: " + jobClass);
 			}
