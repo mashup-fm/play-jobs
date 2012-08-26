@@ -3,6 +3,9 @@
 # import these routes in the main app as :
 # *     /                       module:jobs
 #
+# then, in play 1.2.4+ it may be necessary to put the following after your exisiting static dir 
+# GET     /play-jobs/             staticDir:public-play-jobs
+#
 # ~~~~
 
 GET     /?                      PlayJobsDashboard.index

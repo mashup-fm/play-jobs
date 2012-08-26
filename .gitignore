@@ -7,3 +7,5 @@ lib
 eclipse
 modules
 dist
+*.pyc
+*~
