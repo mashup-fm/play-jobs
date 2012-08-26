@@ -14,8 +14,9 @@ http://playjobs.mashup.fm
 Install Locally
 - Install Module
 -- git clone play-jobs into a local directory separate from your play app
+-- type "play build-module" to build the module. Enter "1.2" or so for required version
 -- look for instructions on how to set up references to local modules, such as
--- http://stackoverflow.com/questions/5859037/how-to-reference-local-modules-using-dependency-yml
+--- http://stackoverflow.com/questions/5859037/how-to-reference-local-modules-using-dependency-yml
 - Add module routes to the application that's installing the jobs module
 -- see instructions in play-jobs/conf/routes
 - Start your play application
